@@ -6,6 +6,7 @@
 package com.vnpt.ssdc;
 
 import com.vnpt.ssdc.controller.CarEndpoint;
+import com.vnpt.ssdc.controller.HouseController;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
@@ -31,6 +32,7 @@ public class MyResourceConfig extends ResourceConfig {
 
     private void registerEndpoints() {
         register(CarEndpoint.class);
+        register(HouseController.class);
         configureSwagger();
     }
 
@@ -39,16 +41,16 @@ public class MyResourceConfig extends ResourceConfig {
         this.register(SwaggerSerializers.class);
 
         BeanConfig config = new BeanConfig();
-        config.setConfigId("ump-jersey");
-        config.setTitle("UMP Rest API");
-        config.setDescription("Rest API for Unified Device Management");
+        config.setConfigId("my-jersey");
+        config.setTitle("Rest API");
+        config.setDescription("Demo rest api");
+        config.setHost("localhost:8088/swagger-ui");
         config.setVersion("v1");
-        config.setContact("SSDC");
-        config.setSchemes(new String[]{"http", "https"});
         config.setBasePath("/api");
         config.setResourcePackage("com.vnpt.ssdc");
         config.setPrettyPrint(true);
         config.setScan(true);
+
     }
 
 }

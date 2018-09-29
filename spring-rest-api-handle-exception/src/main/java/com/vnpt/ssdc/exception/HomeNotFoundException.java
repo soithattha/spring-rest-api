@@ -5,23 +5,25 @@
  */
 package com.vnpt.ssdc.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 /**
  *
  * @author soithattha
- * @date Sep 24, 2018
+ * @date Sep 27, 2018
  * @version
  * @description
  */
-public class CarException extends RuntimeException {
+public class HomeNotFoundException extends RuntimeException {
 
-    public CarException(String message) {
+    public HomeNotFoundException(String message) {
         super(message);
     }
 
-    public CarException() {
+    public HomeNotFoundException() {
+    }
+
+    @Override
+    public String getMessage() {
+        return "HomeNotFoundException -------";
     }
 
 }

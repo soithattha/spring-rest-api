@@ -5,13 +5,13 @@
  */
 package com.vnpt.ssdc.controller;
 
-import com.vnpt.ssdc.exception.Car1Exception;
-import com.vnpt.ssdc.exception.CarException;
+import com.vnpt.ssdc.exception.ApiError;
+import com.vnpt.ssdc.exception.CarNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -28,12 +28,20 @@ public class CarController {
     public String get(@PathVariable("id") int id) {
         switch (id) {
             case 1:
-                throw new CarException();
-            case 2:
-                throw new Car1Exception();
+                throw new CarNotFoundException();
             default:
                 return "Day la car n";
         }
     }
 
+    @ExceptionHandler({CarNotFoundException.class})
+    public void handleCarException(CarNotFoundException e) {
+        System.out.println(e.getMessage());
+        ApiError error = new ApiError(HttpStatus.NOT_FOUND);
+        System.out.println(buildResponseEntity(error));
+    }
+
+    private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
+        return new ResponseEntity<>(apiError, apiError.getStatus());
+    }
 }

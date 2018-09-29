@@ -35,19 +35,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean(name = "simpleMappingExceptionResolver")
-    public SimpleMappingExceptionResolver
-            createSimpleMappingExceptionResolver() {
-        SimpleMappingExceptionResolver r
-                = new SimpleMappingExceptionResolver();
-
-        Properties mappings = new Properties();
-        mappings.setProperty("CarException", "conflicError");
-
-        r.setExceptionMappings(mappings);  // None by default
-        r.setDefaultErrorView("error");    // No default
-        r.setExceptionAttribute("ex");     // Default is "exception"
-        return r;
-    }
+//    @Bean(name = "simpleMappingExceptionResolver")
+//    public SimpleMappingExceptionResolver
+//            createSimpleMappingExceptionResolver() {
+//        SimpleMappingExceptionResolver r
+//                = new SimpleMappingExceptionResolver();
+//
+//        Properties mappings = new Properties();
+//        mappings.setProperty("CarException", "conflicError");
+//
+//        r.setExceptionMappings(mappings);  // None by default
+//        r.setDefaultErrorView("error");    // No default
+//        r.setExceptionAttribute("ex");     // Default is "exception"
+//        return r;
+//    }
 
 }

@@ -26,12 +26,12 @@ public class ExceptionMapperJersey implements ExceptionMapper<Exception> {
         if (ex instanceof Car1Exception) {
 
             return Response.status(401)
-                    .entity(new RestExceptionHandler.ApiError(HttpStatus.BAD_GATEWAY))
+                    .entity(new ApiError(HttpStatus.BAD_GATEWAY))
                     .type(MediaType.APPLICATION_JSON).
                     build();
         } else {
             return Response.status(402)
-                    .entity(new RestExceptionHandler.ApiError(HttpStatus.CREATED))
+                    .entity(new ApiError(HttpStatus.CREATED))
                     .type(MediaType.APPLICATION_JSON).
                     build();
         }

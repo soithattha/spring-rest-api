@@ -5,16 +5,15 @@
  */
 package com.vnpt.ssdc.controller;
 
-import com.vnpt.ssdc.exception.Car1Exception;
-import com.vnpt.ssdc.exception.CarNotFoundException;
-import com.vnpt.ssdc.exception.HomeNotFoundException;
-import javax.ws.rs.GET;
+import io.swagger.annotations.Api;
+import javax.ws.rs.Path;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
@@ -23,16 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @version
  * @description
  */
-@Controller
+@RestController
+@RequestMapping("/spanish-greetings")
 public class HouseController {
 
-    @RequestMapping(value = "/house/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String get(@PathVariable("id") String id) {
-        int id1 = Integer.valueOf(id);
-        switch (id1) {
+    @GetMapping(path = "/house/{id}")
+    public String get(@PathVariable("id") int id) {
+        switch (id) {
             case 1:
-                throw new HomeNotFoundException("Bad day!!!");
+                return "Day la house 1";
             case 2:
                 return "Day la house 2";
             default:
